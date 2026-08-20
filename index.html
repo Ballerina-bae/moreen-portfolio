@@ -717,27 +717,34 @@
             </div>
 
         </div>
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 
-        <form id="contactForm" class="contact-form">
+    <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+        pattern="[A-Za-zÀ-ÿ ]+"
+        title="Please enter letters and spaces only"
+    >
 
-            <input type="text" id="name" name="name"
-                   placeholder="Your Name" required>
+    <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        required
+    >
 
-            <input type="email" id="email" name="email"
-                   placeholder="Your Email" required>
+    <textarea
+        name="message"
+        placeholder="Your Message"
+        required
+    ></textarea>
 
-            <textarea id="message" name="message"
-                      placeholder="Your Message"
-                      rows="6" required></textarea>
+    <button type="submit">Send Message</button>
 
-            <button type="submit" class="btn primary-btn">
-                Send Message
-            </button>
-
-            <p id="formMessage"></p>
-
-        </form>
-
+</form>
+       
     </div>
 
 </section>
