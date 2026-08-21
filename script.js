@@ -1,6 +1,5 @@
-/* =================================
-   MOBILE NAVIGATION
-================================= */
+/*
+   MOBILE NAVIGATION  */
 
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
@@ -23,9 +22,8 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 });
 
 
-/* =================================
-   DARK / LIGHT MODE
-================================= */
+/* 
+   DARK / LIGHT MODE */
 
 const themeToggle = document.getElementById("themeToggle");
 
@@ -63,17 +61,17 @@ if (savedTheme === "light") {
 }
 
 
-/* =================================
+/* 
    CURRENT YEAR
-================================= */
+ */
 
 document.getElementById("year").textContent =
     new Date().getFullYear();
 
 
-/* =================================
+/* 
    CONTACT FORM
-================================= */
+ */
 
 const contactForm = document.getElementById("contactForm");
 const formMessage = document.getElementById("formMessage");
@@ -153,9 +151,9 @@ contactForm.addEventListener("submit", async function(event) {
 });
 
 
-/* =================================
+/* 
    SCROLL ANIMATION
-================================= */
+ */
 
 const cards =
     document.querySelectorAll(
