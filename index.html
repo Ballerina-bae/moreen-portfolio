@@ -15,8 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +29,7 @@
     Moreen
 </div>
 
-        <button class="menu-toggle" id="menuToggle">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">
             ☰
         </button>
 
@@ -45,7 +44,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <button id="themeToggle" class="theme-btn">
+        <button id="themeToggle" class="theme-btn" type="button" aria-label="Toggle color theme" aria-pressed="false">
             ☀
         </button>
 
@@ -56,50 +55,35 @@
 <!-- HERO  -->
 
 <section id="home" class="hero">
-
-    <div class="hero-content">
-
-        <p class="terminal-text">
-            Heyy, My name is
-        </p>
-
-        <h1>
-            Moreen <span>William</span>
-        </h1>
-
-        <!-- Profile Picture -->
-        <div class="hero-image">
-            <img src="linkedubprofile.jpeg" alt="Moreen William">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <p class="eyebrow"><span class="eyebrow-line"></span> CYBERSECURITY · DIGITAL FORENSICS</p>
+            <p class="terminal-text">Hello, I'm</p>
+            <h1>Moreen <span>William</span></h1>
+            <h2>Cybersecurity &amp; Digital Forensics Student</h2>
+            <p class="hero-description">
+                Passionate about cybersecurity, digital forensics, networking,
+                ethical hacking and developing technology solutions that solve
+                real-world problems.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn primary-btn">Explore my work <span aria-hidden="true">↗</span></a>
+                <a href="#contact" class="btn secondary-btn">Let's connect</a>
+            </div>
+            <p class="hero-footnote"><span class="status-dot"></span> Curious mind. Security-focused. Always learning.</p>
         </div>
-
-        <h2>
-            Cybersecurity & Digital Forensics Student
-        </h2>
-
-        <p class="hero-description">
-
-            Passionate about cybersecurity, digital forensics, networking,
-            ethical hacking and developing technology solutions that solve
-            real-world problems.
-
-        </p>
-
-        <div class="hero-buttons">
-
-            <a href="#projects" class="btn primary-btn">
-                View My Work
-            </a>
-
-            <a href="#contact" class="btn secondary-btn">
-                Contact Me
-            </a>
-
+        <div class="hero-visual">
+            <div class="hero-orbit hero-orbit-one"></div>
+            <div class="hero-orbit hero-orbit-two"></div>
+            <div class="portrait-frame">
+                <img src="linkedubprofile.jpeg" alt="Portrait of Moreen William">
+            </div>
+            <div class="portrait-caption"><span>MOREEN WILLIAM</span><span>PORTFOLIO · 2026</span></div>
+            <div class="hero-flower-mark" aria-hidden="true">✳</div>
+            <div class="hero-side-note">SECURE BY DESIGN</div>
         </div>
-
     </div>
-
-</section>
-
+    <a class="scroll-cue" href="#about" aria-label="Scroll to About Me"><span></span> SCROLL TO EXPLORE</a>
 </section>
 
 
@@ -143,7 +127,10 @@
             </p>
 
         </div>
-
+        <aside class="about-floral" aria-label="A soft-focus lily photograph">
+            <img src="https://images.unsplash.com/photo-1564067424339-fef54d5b143e?auto=format&fit=crop&w=1100&q=85" alt="Soft-focus pale pink and white lily" loading="lazy">
+            <div class="floral-caption"><span>GROWTH</span><span>·</span><span>CURIOSITY</span><span>·</span><span>PRECISION</span></div>
+        </aside>
     </div>
 
 </section>
@@ -717,7 +704,7 @@
             </div>
 
         </div>
-<form action="https://formspree.io/forms/xljrzaqw" method="POST">
+<form action="https://formspree.io/f/xljrzaqw" method="POST">
 
     <input
         type="text"
