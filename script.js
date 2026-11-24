@@ -1,193 +1,55 @@
-/*
-   MOBILE NAVIGATION  */
-
+/* Navigation, theme preference, footer year and gentle reveal effects. */
 const menuToggle = document.getElementById("menuToggle");
 const navLinks = document.getElementById("navLinks");
 
-menuToggle.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-});
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+    menuToggle.textContent = isOpen ? "×" : "☰";
+  });
 
-
-/* Close menu when link is clicked */
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-
+  navLinks.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-
-        navLinks.classList.remove("active");
-
+      navLinks.classList.remove("active");
+      menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open navigation");
+      menuToggle.textContent = "☰";
     });
-
-});
-
-
-/* 
-   DARK / LIGHT MODE */
-
-const themeToggle = document.getElementById("themeToggle");
-
-themeToggle.addEventListener("click", () => {
-
-    document.body.classList.toggle("light-mode");
-
-    if (document.body.classList.contains("light-mode")) {
-
-        themeToggle.textContent = "🌙";
-
-        localStorage.setItem("theme", "light");
-
-    } else {
-
-        themeToggle.textContent = "☀";
-
-        localStorage.setItem("theme", "dark");
-
-    }
-
-});
-
-
-/* Remember user's theme */
-
-const savedTheme = localStorage.getItem("theme");
-
-if (savedTheme === "light") {
-
-    document.body.classList.add("light-mode");
-
-    themeToggle.textContent = "🌙";
-
+  });
 }
 
+const themeToggle = document.getElementById("themeToggle");
+if (themeToggle) {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "light") document.body.classList.add("light-mode");
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+  });
+}
 
-/* 
-   CURRENT YEAR
- */
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+/* The contact form uses its existing HTML form action. No fake /api/contact
+   request is made from this static portfolio. Verify the Formspree endpoint
+   in the account before relying on message delivery. */
 
+const revealItems = document.querySelectorAll(".skill-card, .project-card, .interest, .research-card, .cert-card");
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const observer = new IntersectionObserver((entries, currentObserver) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        currentObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-/* 
-   CONTACT FORM
- */
-
-const contactForm = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
-
-contactForm.addEventListener("submit", async function(event) {
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const message =
-        document.getElementById("message").value.trim();
-
-
-    if (!name || !email || !message) {
-
-        formMessage.textContent =
-            "Please fill in all fields.";
-
-        return;
-    }
-
-
-    formMessage.textContent =
-        "Sending message...";
-
-
-    try {
-
-        const response = await fetch("/api/contact", {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                message: message
-            })
-
-        });
-
-
-        const result = await response.json();
-
-
-        if (response.ok) {
-
-            formMessage.textContent =
-                "✓ Message sent successfully!";
-
-            contactForm.reset();
-
-        } else {
-
-            formMessage.textContent =
-                result.message || "Something went wrong.";
-
-        }
-
-    } catch (error) {
-
-        console.error(error);
-
-        formMessage.textContent =
-            "Unable to connect to the server.";
-
-    }
-
-});
-
-
-/* 
-   SCROLL ANIMATION
- */
-
-const cards =
-    document.querySelectorAll(
-        ".skill-card, .project-card, .interest, .research-card"
-    );
-
-
-const observer = new IntersectionObserver(
-    entries => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-
-            }
-
-        });
-
-    },
-    {
-        threshold: 0.15
-    }
-);
-
-
-cards.forEach(card => {
-
-    card.style.opacity = "0";
-    card.style.transform = "translateY(25px)";
-    card.style.transition = "0.6s ease";
-
-    observer.observe(card);
-
-});
+  revealItems.forEach((item) => {
+    item.classList.add("reveal");
+    observer.observe(item);
+  });
+}
